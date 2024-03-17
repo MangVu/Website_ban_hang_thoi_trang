@@ -1,0 +1,6 @@
+.select2-search--inline .select2-search__field {
+    width: auto !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}

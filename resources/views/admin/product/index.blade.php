@@ -23,7 +23,7 @@
                   <th scope="col">Giá</th>
                   <th scope="col">Hình ảnh</th>
                   <th scope="col">Danh mục</th>
-                  <th scope="col">Action</th>/ <!--sửa xóa-->
+                  <th scope="col">Action</th> <!--sửa xóa-->
                 </tr>
               </thead>
               <tbody>

@@ -20,7 +20,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Tên menu</th>
-                  <th scope="col">Action</th>/ <!--sửa xóa-->
+                  <th scope="col">Action</th><!--sửa xóa-->
                 </tr>
               </thead>
               <tbody>
@@ -38,7 +38,7 @@
             </table>
           </div>
           <div class="col-md-12"> 
-          {{$menus->links()}} 
+          {{$menus->links()}}
           </div>
         </div>
       </div>

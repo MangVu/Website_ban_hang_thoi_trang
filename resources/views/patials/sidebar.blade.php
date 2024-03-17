@@ -57,7 +57,7 @@
             <a href="{{ route('product.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Danh mục sản phẩm
+                Sản phẩm
               </p>
             </a>
           </li>
