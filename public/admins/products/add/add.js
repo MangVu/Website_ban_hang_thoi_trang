@@ -32,7 +32,7 @@ $(function () {
 
             var cmsURL =
                 editor_config.path_absolute +
-                "laravel-filemanager?editor=" +
+                "filemanager?editor=" +
                 meta.fieldname;
             if (meta.filetype == "image") {
                 cmsURL = cmsURL + "&type=Images";
