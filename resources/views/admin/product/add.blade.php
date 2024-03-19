@@ -46,14 +46,14 @@
 
                         <div class="form-group">
                             <label >Chọn danh mục</label>
-                            <select class="form-control select2_init" name="category_id" required>
+                            <select class="form-control select2_init" name="category_id" > <!-- required -->
                             <option value=''>Chọn danh mục </option>
                             {!!$htmlOption!!}
                             </select>
                         </div>
                         <div class="form-group">
                             <label >Nhập tags cho sản phẩm</label>
-                            <select class="form-control tags_select2_choose" multiple="multiple">
+                            <select name="tags[]"class="form-control tags_select2_choose" multiple="multiple">
                             
                             </select>
                         </div>

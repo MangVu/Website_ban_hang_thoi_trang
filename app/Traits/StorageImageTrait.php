@@ -20,4 +20,18 @@ trait StorageImageTrait {
         }
         return null;
     }
+    public function storeTraitUploadnutiple($file, $folderName) {
+            //$file = $request->file($fieldname);tuong dduowwng với $fileItem của hàm foreach bên ham store
+            $fileNameOrigin = $file->getClientOriginalName();
+            $fileNameHash = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $filepath = $file->storeAs('public/' . $folderName . '/' . auth()->id(), $fileNameHash); // Sử dụng $folderName thay vì foldername
+            $dataUploadTrait = [
+                'file_name' => $fileNameOrigin,
+                //lưu một tệp bằng cách sử dụng Storage, nó sẽ được lưu trữ trong một vị trí được cấu hình trước đó, ví dụ như public, local, hoặc s3. Storage::url() sẽ trả về URL của tệp dựa trên vị trí lưu trữ này
+                //dùng nó để truy cập trực tiếp vào tệp từ trình duyệt 
+                'file_path' => Storage::url($filepath)
+            ];
+            return $dataUploadTrait;
+       
+    }
 }
