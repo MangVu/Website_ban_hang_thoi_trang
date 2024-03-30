@@ -1,7 +1,7 @@
 @extends('Layout.admin') 
 
 @section('title')
-    <title>Thêm Người Dùng</title>
+    <title>Chỉnh Sửa Người Dùng</title>
 @endsection
 
 @section('css')
@@ -16,12 +16,12 @@
 @section('content')
     
 <div class="content-wrapper">
-@include('patials.content-header', ['name' => 'User', 'key' => 'Add'])
+@include('patials.content-header', ['name' => 'User', 'key' => 'Edit'])
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <form action="{{route('users.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('users.update',['id'=>$user->id])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Họ và tên</label>
@@ -29,7 +29,7 @@
                                 name="name"
                                 class="form-control @error('name') is-invalid @enderror"
                                 placeholder="Nhập họ và tên"
-                                value="{{ old('name') }}">
+                                value="{{$user->name}}">
                             @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -41,7 +41,7 @@
                                 name="email"
                                 class="form-control @error('email') is-invalid @enderror"
                                 placeholder="Nhập email"
-                                value="{{ old('email') }}">
+                                value="{{$user->email}}">
                             @error('email')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -62,8 +62,11 @@
                             <label>Chọn vai trò</label>
                             <select id="roleSelect" name="role_id[]" class="form-control select2_init @error('role_id') is-invalid @enderror" multiple>
                                 <option value=""></option>
+
                                 @foreach($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    <option 
+                                    {{ $roleOfUser->contains('id', $role->id)?'selected':''}}
+                                    value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('role_id')
