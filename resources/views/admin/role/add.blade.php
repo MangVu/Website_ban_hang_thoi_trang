@@ -5,13 +5,11 @@
 @endsection
 
 @section('css')
-    <link href="{{asset('admins/slider/add/add.css')}}" rel="stylesheet" />
-    <style>
-      .card-header{
-        background-color: #007bff!important;
-        color: white!important;
-      }
-    </style>
+    <link href="{{asset('admins/role/add.css')}}" rel="stylesheet" />
+@endsection
+
+@section('js')
+    <script src="{{asset('admins/role/add.js')}}"></script>
 @endsection
 
 @section('content')
@@ -28,7 +26,7 @@
                             <input type="text"  
                                    name="name"
                                    class="form-control @error('name') is-invalid @enderror"
-                                   placeholder="Nhập tên slider"
+                                   placeholder="Nhập tên vai trò"
                                    value="{{old('name')}}">
                             @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -36,10 +34,10 @@
                         </div>
                         <div class="form-group">
                             <label>Mô tả vai trò</label>
-                            <textarea name="description" 
-                                      class="form-control @error('description') is-invalid @enderror"
-                                      rows="4">{{old('description')}}</textarea>
-                            @error('description')
+                            <textarea name="display_name" 
+                                      class="form-control @error('display_name') is-invalid @enderror"
+                                      rows="4">{{old('display_name')}}</textarea>
+                            @error('display_name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -47,26 +45,29 @@
 
                     <div class="col-md-12">
                         <div class="row">
+                            @foreach($permissionsParent as $permissionParentItem) 
                             <div class="card border-primary mb-3 col-md-12" >
                                 <div class="card-header">
                                     <label>
-                                        <input type="checkbox"  value="">
+                                        <input name="role_id" type="checkbox"  value="" class="checkbox_wapper ">
                                     </label>
-                                    Model Sản phẩm
+                                    Model {{ $permissionParentItem-> name}}
                                 </div>
                                 <div class="row">
-                                    @for($i = 1; $i <= 4; $i++)
+                                    <!lấy ra các thằng con thì trỏ đến phương thức trung gian trong model permission !>
+                                    @foreach( $permissionParentItem->permissionChildren as $permissionChildrenItem)
                                     <div class="card-body text-primary col-md-3">
                                         <h5 class="card-title">
                                             <label>
-                                                <input type="checkbox"  value="">
+                                                <input  class="checkbox_childrent" type="checkbox" name="permission_id[]" value="{{$permissionChildrenItem->id}}">
                                             </label>
-                                            Thêm sản phẩm
+                                            {{ $permissionChildrenItem-> name}}
                                         </h5>
                                     </div>
-                                    @endfor
+                                    @endforeach
                                 </div>                               
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
