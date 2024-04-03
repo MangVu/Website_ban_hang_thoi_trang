@@ -24,8 +24,8 @@ class RoleAddRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'bail|required|unique:roles|max:255', // Changed 'sliders' to 'roles'
-            'description' => 'required',
+            'name' => 'required', // Changed 'sliders' to 'roles'
+            'display_name' => 'required',
             'permission_id' => 'required',
         ];
     }
@@ -41,8 +41,8 @@ class RoleAddRequest extends FormRequest
             'name.required' => 'Tên không được để trống.',
             'name.unique' => 'Tên đã tồn tại.',
             'name.max' => 'Tên không được vượt quá 255 ký tự.',
-            'description.required' => 'Mô tả không được để trống.',
-            'permission_id.required' => 'ko để trống '
+            'display_name.required' => 'Mô tả không được để trống.',
+            'permission_id.required' => 'Phân quyền cho người dùng'
         ];
     }
 }

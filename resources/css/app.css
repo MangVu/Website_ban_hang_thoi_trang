@@ -1,3 +1,8 @@
 .test1 {
     background-color: red !important;
 }
+
+.is-invalid {
+    border: 1px solid blue !important;
+    color: green !important;
+}

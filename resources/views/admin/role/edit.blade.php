@@ -14,11 +14,11 @@
 
 @section('content')
 <div class="content-wrapper">
-    @include('patials.content-header', ['name' => 'Role', 'key' => 'Add'])
+    @include('patials.content-header', ['name' => 'Role', 'key' => 'Edit'])
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <form action="{{route('roles.store')}}" method="post" enctype="multipart/form-data" style="width:100%">
+                <form action="{{route('roles.update',['id'=>$role->id])}}" method="post" enctype="multipart/form-data" style="width:100%">
                     @csrf
                     <div class="col-md-12">
                         <div class="form-group">
@@ -27,7 +27,7 @@
                                    name="name"
                                    class="form-control @error('name') is-invalid @enderror"
                                    placeholder="Nhập tên vai trò"
-                                   value="{{old('name')}}">
+                                   value="{{$role->name}}">
                             @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -36,7 +36,7 @@
                             <label>Mô tả vai trò</label>
                             <textarea name="display_name" 
                                       class="form-control @error('display_name') is-invalid @enderror"
-                                      rows="4">{{old('display_name')}}</textarea>
+                                      rows="4">{{$role->display_name}}</textarea>
                             @error('display_name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -53,7 +53,7 @@
                             </div>
                             @foreach($permissionsParent as $permissionParentItem) 
                             <div class="card border-primary mb-3 col-md-12" >
-                                <div class="card-header ">
+                                <div class="card-header">
                                     <label>
                                         <input type="checkbox"  value="" class="checkbox_wapper ">
                                     </label>
@@ -65,16 +65,16 @@
                                     <div class="card-body text-primary col-md-3">
                                         <h5 class="card-title">
                                             <label>
-                                                <input  class="checkbox_childrent @error('permission_id') is-invalid @enderror" type="checkbox" name="permission_id[]" value="{{$permissionChildrenItem->id}}">
+                                                <input  class="checkbox_childrent" type="checkbox" 
+                                                    name="permission_id[]" 
+                                                    {{$permissionChecked->contains('id',$permissionChildrenItem->id)? 'checked':''}}
+                                                    value="{{$permissionChildrenItem->id}}">
                                             </label>
                                             {{ $permissionChildrenItem-> name}}
                                         </h5>
                                     </div>
                                     @endforeach
-                                </div> 
-                                @error('permission_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror                              
+                                </div>                               
                             </div>
                             @endforeach
                         </div>

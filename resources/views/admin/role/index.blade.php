@@ -35,10 +35,10 @@
                 <tr>
                     <th scope="row">{{$role->id}}</th>
                     <td>{{$role->name}}</td>
-                    <td>{{$role->description}}</td>
+                    <td>{{$role->display_name}}</td>
                     <td>
-                      <a href="" class="btn btn-default">Edit</a>
-                      <a href="" data-url="" class="btn btn-danger action_delete">Delete</a>
+                      <a href="{{route('roles.edit',['id'=>$role->id])}}" class="btn btn-default">Edit</a>
+                      <a href="" data-url="{{route('roles.delete',['id'=>$role->id])}}" class="btn btn-danger action_delete">Delete</a>
                     </td>
                 </tr>
                  @endforeach  
