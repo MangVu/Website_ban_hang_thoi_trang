@@ -46,4 +46,18 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany(Role::class, 'role_user','user_id','role_id');
     }
+    public function checkPermissionAcess($permissionCheck){
+        //user đang login hệ thống có quyên thêm suwarvaf quyền xem menu
+        //Lay duoc tat cac cac quyen cuar user dang login vao he thong
+        //so sanh gia tri duwa vao cua router hien tai xem cos ton tai trong cac quyen lay duoc hay ko
+        $roles=auth()->user()->roles;
+        foreach ($roles as $role) {
+           $permissions= $role->permissions;
+           if($permissions->contains('key_code',$permissionCheck)){
+                return true;
+           }
+           return false;
+        }
+        // đang sai được cấp qyền vào mà ko vào xem đượ danh sách menu và categories
+    }
 }
